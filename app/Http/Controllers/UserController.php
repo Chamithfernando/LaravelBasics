@@ -7,6 +7,9 @@ use App\Models\User\uploadAvatar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
+#Controller should be minimize and every logic you can place on Model class
+
 class UserController extends Controller
 {
 
@@ -19,9 +22,9 @@ class UserController extends Controller
         //Checking the file
         if ($request->hasFile('image')) {
 
-          //  User::uploadAvatar($request->image);
+           User::updalodAvater($request->image);
 
-            
+            /*
             # Getting the orginal name of the file
             $fileName =$request->image->getClientOriginalName();
 
@@ -37,7 +40,7 @@ class UserController extends Controller
                         // User :: find(1)->update(['avater' => $fileName]);
 
             auth()->user()->update(['avater' => $fileName]);
-           
+           */
 
 
         }
@@ -47,7 +50,7 @@ class UserController extends Controller
 
     }
 
-   
+   /*
 
     //developing deleteOld image function
     protected function deleteOldImage(){
@@ -58,7 +61,7 @@ class UserController extends Controller
         }
     }
 
-
+*/
 
 
 

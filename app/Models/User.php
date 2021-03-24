@@ -49,7 +49,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /*
+   
 
     #getting wrong when trying to mearge User and User controller into one place.
 
@@ -57,20 +57,22 @@ class User extends Authenticatable
     {
         # code...
         # Getting the orginal name of the file
-        $fileName =$request->image->getClientOriginalName();
+        $fileName =$image->getClientOriginalName();
 
            
         //Calling delete old image function
-        $this->deleteOldImage();
+        (new self())->deleteOldImage();
 
 
 
         #Storing the file
-        $request -> image->storeAs('images',$fileName,'public');
+        #Do some Changers
+        $image->storeAs('images',$fileName,'public');
         #Updating the User that related to this averter
                     // User :: find(1)->update(['avater' => $fileName]);
 
-        $this->update(['avater' => $fileName]);
+        #Do some changers            
+        auth()->user()->update(['avater' => $fileName]);
     }
 
 
@@ -91,7 +93,7 @@ class User extends Authenticatable
 
     //Mutator
     //Mutate change the behavior of the attribute that we difine
-
+    /*
    
     public function setPasswordAttribute($password)
     {
