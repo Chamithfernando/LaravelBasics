@@ -24,6 +24,13 @@ class UserController extends Controller
 
            User::updalodAvater($request->image);
 
+
+                    #session()->flash() === with()
+
+          # $request->session()->flash('message','Image uploaded');
+
+           return redirect()->back()->with('message','Image uploaded'); #---------------------- Sucess message
+
             /*
             # Getting the orginal name of the file
             $fileName =$request->image->getClientOriginalName();
@@ -44,9 +51,9 @@ class UserController extends Controller
 
 
         }
-
-          
-        return redirect()->back();
+        #session()->flash() === with()
+        # $request->session()->flash('error','Image not uploaded');  
+        return redirect()->back()->with('error','Image not uploaded');#---------------------Error message
 
     }
 

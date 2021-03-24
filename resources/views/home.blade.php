@@ -18,10 +18,19 @@
                 </div>
 
                 <div class="card-body">
-                   <form action="/upload" method="post" enctype="multipart/form-data">
+
+                    @if(session()->has('message'))
+                    <div class="alert alert-success">{{ session()->get('message')}}</div>
+
+                    @elseif (session()->has('error'))
+                    <div class="alert alert-danger">{{ session()->get('error')}}</div>
+
+                    @endif
+
+                    <form action="/upload" method="post" enctype="multipart/form-data">
                     @csrf
-                    <input type="file" name="image"/>
-                    <input type="submit" value="upload"/>
+                    <input type="file" class="btn btn-secondary" name="image"/>
+                    <input type="submit" class="btn btn-primary" value="upload"/>
 
                    </form>
 
