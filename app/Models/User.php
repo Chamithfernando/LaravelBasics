@@ -24,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avater',
     ];
 
     /**
@@ -31,10 +32,13 @@ class User extends Authenticatable
      *
      * @var array
      */
+    
     protected $hidden = [
         'password',
         'remember_token',
     ];
+
+    
 
     /**
      * The attributes that should be cast to native types.
@@ -44,4 +48,27 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    //Acessor and mutator is example of this 
+
+
+    //Mutator
+    //Mutate change the behavior of the attribute that we difine
+
+    /*
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+
+    //Accessor
+    //accessor transforms an Eloquent attribute value when it is accessed
+    public function getNameAttribute($name)
+    {
+        return ucfirst($value);
+    }
+
+    */
 }

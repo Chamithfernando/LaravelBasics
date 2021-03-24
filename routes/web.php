@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +15,14 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return env('APP_NAME');
+   return view('welcome');
 });
 
 Route::get('/user', [UserController::class, 'index']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/upload',  [App\Http\Controllers\UserController::class, 'uploadAvatar']);
