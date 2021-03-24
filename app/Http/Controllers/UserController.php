@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use App\Models\User\uploadAvatar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,22 +13,49 @@ class UserController extends Controller
 
     function uploadAvatar(Request $request){
 
+       
+
 
         //Checking the file
         if ($request->hasFile('image')) {
+
+          //  User::uploadAvatar($request->image);
+
+            
             # Getting the orginal name of the file
             $fileName =$request->image->getClientOriginalName();
+
+           
+            //Calling delete old image function
+            $this->deleteOldImage();
+
+
+
             #Storing the file
             $request -> image->storeAs('images',$fileName,'public');
             #Updating the User that related to this averter
                         // User :: find(1)->update(['avater' => $fileName]);
 
             auth()->user()->update(['avater' => $fileName]);
+           
+
+
         }
 
-    
+          
         return redirect()->back();
 
+    }
+
+   
+
+    //developing deleteOld image function
+    protected function deleteOldImage(){
+
+        if (auth()->user()->avater) {
+            # code...
+            Storage::delete('/public/images/'.auth()->user()->avater);
+        }
     }
 
 
